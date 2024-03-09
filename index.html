@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Timoshenko Beam Model Calculation Method</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h3>Yapı Bilgileri</h3>
+        <form>
+            <label for="num_f">Kat Adedi:</label>
+            <input type="number" placeholder="4" id="num_f" value="4">
+            <label for="num_h">Kat Yüksekliği:</label>
+            <input type="number" placeholder="3.29" id="num_h" value="3.29">
+            <label for="E">Elastisite Modülü:</label>
+            <input type="number" placeholder="200000000" id="E" value="200000000">
+            <label for="G">Kayma Modülü:</label>
+            <input type="number" placeholder="77000000" id="G" value="77000000">
+
+        </form>
+    
+    <h3>Kolon Profil Özellikleri</h3>
+    <h5>(HD400x287)</h5> 
+        <form>
+            <label for="Ic">Atalet Momenti:</label>
+            <input type="number" placeholder="" id="Ic">
+            <label for="Ac">Kesit Alanı:</label>
+            <input type="number" id="Ac">
+            <label for="d">Yükseklik:</label>
+            <input type="number" id="d">
+            <label for="Afl">Flanş Alanı:</label>
+            <input type="number" id="Afl">
+            <label for="Aweb">Gövde Alanı:</label>
+            <input type="number" id="Aweb">
+            <label for="tweb">Gövde Kalınlığı:</label>
+            <input type="number" id="tweb">
+            
+        </form>
+
+    <h3>SPSW Özellikleri</h3>
+        <form>
+            <label for="plw">Levha Genişliği:</label>
+            <input type="number" placeholder="3" id="plw" value="3">
+            <label for="ptk">Levha Kalınlığı:</label>
+            <input type="number" placeholder="0.003" id="ptk" value="0.003">
+
+        </form>
+
+    <h3>Deprem Parametreleri</h3>
+        <form>
+            <label for="Sa1">Sa1:</label>
+            <input type="number" placeholder="1.752008" id="Sa1" value="1.752008">
+            <label for="Sa2">Sa2:</label>
+            <input type="number" placeholder="2.819928" id="Sa2" value="2.819928">
+            <label for="Sa3">Sa3:</label>
+            <input type="number" placeholder="2.553271" id="Sa3" value="2.553271">
+            <label for="Sd1">Sd1:</label>
+            <input type="number" placeholder="0.016318" id="Sd1" value="0.016318">
+            <label for="Sd2">Sd2:</label>
+            <input type="number" placeholder="0.002344" id="Sd2" value="0.002344">
+            <label for="Sd3">Sd3:</label>
+            <input type="number" placeholder="0.000582" id="Sd3" value="0.000582">
+
+        </form>
+    
+</body>
+
+    <script src="main.js"></script>
+</html>
