@@ -1,0 +1,3 @@
+# The under construction...
+
++ I am organizing the Timoshenko Beam Model Calculation Method, which I prepared with Python code, as UI-UX with HTML, JavaScript and CSS.
