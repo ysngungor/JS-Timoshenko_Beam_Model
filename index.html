@@ -7,63 +7,78 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h3>Yapı Bilgileri</h3>
-        <form>
-            <label for="num_f">Kat Adedi:</label>
-            <input type="number" placeholder="4" id="num_f" value="4">
-            <label for="num_h">Kat Yüksekliği:</label>
-            <input type="number" placeholder="3.29" id="num_h" value="3.29">
-            <label for="E">Elastisite Modülü:</label>
-            <input type="number" placeholder="200000000" id="E" value="200000000">
-            <label for="G">Kayma Modülü:</label>
-            <input type="number" placeholder="77000000" id="G" value="77000000">
+    <form id="form1">
+    <div>    
+        <h3>Yapı Bilgileri</h3>
+            <label>Kat Adedi: <input type="number" placeholder="4" id="num_f" value="4"/></label></br>
+            <label>Kat Yüksekliği: <input type="number" placeholder="3.29" id="num_h" value="3.29"/> m</label></br>
+            <label>Elastisite Modülü: <input type="number" placeholder="200000000" id="E" value="200000000"/> kN/m2</label></br> 
+            <label>Kayma Modülü: <input type="number" placeholder="77000000" id="G" value="77000000"/> kN/m2</label></br>
+    </div>        
+    <div>    
+        <h3>Kolon Profil Özellikleri</h3>
+        <h5>(HD400x287)</h5> 
+            <label>Atalet Momenti: <input type="number" placeholder="99710" id="Ic" value="99710"/> cm4</label></br> <!-- metreye çevir -->
+            <label>Kesit Alanı: <input type="number" placeholder="366.3" id="Ac" value="366.3" /> cm2</label></br> <!-- metreye çevir -->
+            <label>Yükseklik: <input type="number" placeholder="393" id="d" value="393" /> mm</label></br> <!-- metreye çevir -->
+            <label>Flanş Alanı: <input type="number" placeholder="14603.4" id="Afl" value="14603.4" /> mm2</label></br> <!-- metreye çevir -->
+            <label>Gövde Alanı: <input type="number" placeholder="8881.8" id="Aweb" value="8881.8" /> mm2</label></br> <!-- metreye çevir -->
+            <label>Gövde Kalınlığı: <input type="number" placeholder="22.6" id="tweb" value="22.6" /> mm</label></br> <!-- metreye çevir -->
+    </div>
+    <div>
+        <h3>SPSW Özellikleri</h3>
+            <label>Levha Genişliği: <input type="number" placeholder="3" id="plw" value="3"/> m</label></br>
+            <label>Levha Kalınlığı: <input type="number" placeholder="3" id="ptk" value="3"/> mm</label></br> <!-- metreye çevir -->       
+    </div>
+    <div>    
+        <h3>Deprem Parametreleri</h3>
+            <label>Sa1: <input type="number" placeholder="1.752008" id="Sa1" value="1.752008"/> m/s2</label></br>
+            <label>Sa2: <input type="number" placeholder="2.819928" id="Sa2" value="2.819928"/> m/s2</label></br>
+            <label>Sa3: <input type="number" placeholder="2.553271" id="Sa3" value="2.553271"/> m/s2</label></br>
+            <label>Sd1: <input type="number" placeholder="0.016318" id="Sd1" value="0.016318"/> m</label></br>
+            <label>Sd2: <input type="number" placeholder="0.002344" id="Sd2" value="0.002344"/> m</label></br>
+            <label>Sd3: <input type="number" placeholder="0.000582" id="Sd3" value="0.000582"/> m</label></br>
+    </div>        
+    <div>    
+        <h3>Periyot Değerleri</h3> 
+            <label>T1: <output name="T1"></label></br>
+            <label>T2: <output name="T2"></label></br>
+            <label>T3: <output name="T3"></label></br>
+    </div>
+    <div>    
+        <h3>Taban Kesme Kuvveti</h3> 
+            <label>Vb1: <output name="Vb1"></label></br>
+            <label>Vb2: <output name="Vb2"></label></br>
+            <label>Vb3: <output name="Vb3"></label></br>
+                <p>
+                    <label>Vb: <output name="Vb"></label></br>
+                </p>
+    </div>
+    <div>    
+        <h3>Tepe Noktası Maksimum Yerdeğiştirme</h3> 
+            <label>dmax1: <output name="dmax1"></label></br>
+            <label>dmax2: <output name="dmax2"></label></br>
+            <label>dmax3: <output name="dmax3"></label></br>
+                <p>
+                    <label>dmax: <output name="dmax"></label></br>
+                </p>
+    </div>
+    <div>    
+        <h3>Maksimum Göreli Kat Ötelemesi</h3> 
+            <label>dr11: <output name="dr11"></label></br>
+            <label>dr21: <output name="dr21"></label></br>
+            <label>dr31: <output name="dr31"></label></br>
+                <p>
+                    <label>drmax: <output name="drmax"></label></br>
+                </p>
+    </div>
 
-        </form>
-    
-    <h3>Kolon Profil Özellikleri</h3>
-    <h5>(HD400x287)</h5> 
-        <form>
-            <label for="Ic">Atalet Momenti:</label>
-            <input type="number" placeholder="" id="Ic">
-            <label for="Ac">Kesit Alanı:</label>
-            <input type="number" id="Ac">
-            <label for="d">Yükseklik:</label>
-            <input type="number" id="d">
-            <label for="Afl">Flanş Alanı:</label>
-            <input type="number" id="Afl">
-            <label for="Aweb">Gövde Alanı:</label>
-            <input type="number" id="Aweb">
-            <label for="tweb">Gövde Kalınlığı:</label>
-            <input type="number" id="tweb">
-            
-        </form>
+    <button id="Hesapla">Hesapla</button>
+    <p id="sonuc"></p>
+    <!--<button id="clc-btn">Hesapla</button>-->
+    <button onclick="clrFunction()">Reset</button>
 
-    <h3>SPSW Özellikleri</h3>
-        <form>
-            <label for="plw">Levha Genişliği:</label>
-            <input type="number" placeholder="3" id="plw" value="3">
-            <label for="ptk">Levha Kalınlığı:</label>
-            <input type="number" placeholder="0.003" id="ptk" value="0.003">
-
-        </form>
-
-    <h3>Deprem Parametreleri</h3>
-        <form>
-            <label for="Sa1">Sa1:</label>
-            <input type="number" placeholder="1.752008" id="Sa1" value="1.752008">
-            <label for="Sa2">Sa2:</label>
-            <input type="number" placeholder="2.819928" id="Sa2" value="2.819928">
-            <label for="Sa3">Sa3:</label>
-            <input type="number" placeholder="2.553271" id="Sa3" value="2.553271">
-            <label for="Sd1">Sd1:</label>
-            <input type="number" placeholder="0.016318" id="Sd1" value="0.016318">
-            <label for="Sd2">Sd2:</label>
-            <input type="number" placeholder="0.002344" id="Sd2" value="0.002344">
-            <label for="Sd3">Sd3:</label>
-            <input type="number" placeholder="0.000582" id="Sd3" value="0.000582">
-
-        </form>
-    
+    </form>
 </body>
 
     <script src="main.js"></script>

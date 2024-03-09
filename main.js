@@ -28,3 +28,22 @@ var Sa3 = 2.553271  // (m/s2) Spectral Acceleration
 var Sd1 = 0.016318  // (m) Spectral Displacement
 var Sd2 = 0.002344  // (m) Spectral Displacement
 var Sd3 = 0.000582  // (m) Spectral Displacement
+
+document.getElementById("Hesapla").addEventListener("click", function() {
+
+var num_f = parseInt(document.getElementById("num_f").value);
+var num_f = parseFloat(document.getElementById("num_h").value);
+
+// Değerlerin boş veya geçersiz olup olmadığını kontrol et
+if (isNaN(num_f) || isNaN(num_h)) {
+    document.getElementById("sonuc").innerText = "Lütfen geçerli sayılar girin.";
+} 
+else {
+    // İki sayıyı topla ve sonucu göster
+    var H = num_f * num_h;
+    document.getElementById("sonuc").innerText = "H = " + H;
+}});
+
+function clrFunction() {
+    document.getElementById("form1").reset();
+};
