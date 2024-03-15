@@ -1,35 +1,4 @@
 "use strict";
-/*### Building Features ###*/
-let num_f = 4              // Number of floors
-let num_h = 3.29           // (m) Floor height
-let H = num_f * num_h      // (m) Building height
-let E = 200 * 10**6        // (kN/m2) Elasticity modulus
-let G = 77 * 10**6         // (kN/m2) Shear modulus
-let mass = 150             // (t/floor)
-let Mt = 2 * mass * num_f  // (t) Total Mass (2 shear wall)
-let roA = mass / num_h     // (t/m) Mass spread over floor height
-
-/*### Column Properties ###*/
-// HD400x287
-let Ic = 0.9971 * 10**(-3)    // (m4) Moment of inertia
-let Ac = 366.3 * 10**(-4)     // (m2) Area
-let d = 0.393                 // (m)  Profile height
-let Afl = 14603.4 * 10**(-6)  // (m2) Flange area
-let Aweb = 8881.8 * 10**(-6)  // (m2) Web area
-let tweb = 22.6 * 10**(-3)    // (m)  Web thickness
-
-/*### Wall Properties ###*/
-let plw = 3      // (m) Plate width
-let ptk = 0.003  // (m) Plate thickness
-
-/*### Earthquake Parameters ###*/
-let Sa1 = 1.752008  // (m/s2) Spectral Acceleration
-let Sa2 = 2.819928  // (m/s2) Spectral Acceleration
-let Sa3 = 2.553271  // (m/s2) Spectral Acceleration
-let Sd1 = 0.016318  // (m) Spectral Displacement
-let Sd2 = 0.002344  // (m) Spectral Displacement
-let Sd3 = 0.000582  // (m) Spectral Displacement
-
 
 document.getElementById("temizleButton").addEventListener("click", function() {
     // Formu seç
@@ -58,16 +27,16 @@ document.getElementById("hesaplaButton").addEventListener("click", function(even
     let mass = parseFloat(document.getElementById("mass").value);
 
     // Kolon Özellikleri
-    let Ic = parseFloat(document.getElementById("Ic").value);
-    let Ac = parseFloat(document.getElementById("Ac").value);
-    let d = parseFloat(document.getElementById("d").value);
-    let Afl = parseFloat(document.getElementById("Afl").value);
-    let Aweb = parseFloat(document.getElementById("Aweb").value);
-    let tweb = parseFloat(document.getElementById("tweb").value);
+    let Ic = parseFloat(document.getElementById("Ic").value)*10**(-8);
+    let Ac = parseFloat(document.getElementById("Ac").value)*10**(-4);
+    let d = parseFloat(document.getElementById("d").value)*10**(-3);
+    let Afl = parseFloat(document.getElementById("Afl").value)*10**(-6);
+    let Aweb = parseFloat(document.getElementById("Aweb").value)*10**(-6);
+    let tweb = parseFloat(document.getElementById("tweb").value)*10**(-3);
 
     // Duvar Özellikleri
     let plw = parseFloat(document.getElementById("plw").value);
-    let ptk = parseFloat(document.getElementById("ptk").value);
+    let ptk = parseFloat(document.getElementById("ptk").value)*10**(-3);
     
 
     // Deprem Parametreleri
@@ -78,7 +47,7 @@ document.getElementById("hesaplaButton").addEventListener("click", function(even
     let Sd2 = parseFloat(document.getElementById("Sd2").value);
     let Sd3 = parseFloat(document.getElementById("Sd3").value);
 
-    data = [[1.787,	 0.285,	0.102, 0.610, 0.190, 0.070,	1.570, 0.870, 0.510,  None,  None,  None],
+    let data = [[1.787,	 0.285,	0.102, 0.610, 0.190, 0.070,	1.570, 0.870, 0.510,  null,  null,  null],
         [2.171,	 0.575,	0.284, 0.687, 0.187, 0.049,	1.500, 0.690, 0.337, 1.792,	2.330, 2.440],
         [2.504,	 0.740,	0.383, 0.722, 0.162, 0.043,	1.460, 0.630, 0.310, 1.686,	2.380, 2.268],
         [2.801,	 0.866,	0.460, 0.743, 0.145, 0.040,	1.430, 0.590, 0.290, 1.654,	2.345, 2.202],
@@ -110,6 +79,11 @@ document.getElementById("hesaplaButton").addEventListener("click", function(even
         [17.971, 5.988,	3.581, 0.814, 0.086, 0.035,	1.275, 0.415, 0.263, 1.974,	1.945, 2.058],
         [21.977, 7.324,	4.385, 0.810, 0.086, 0.035,	1.270, 0.410, 0.260, 1.980,	1.940, 2.060]];
 
+        let index_r2 = [0.0,  0.1,  0.2,  0.3,  0.4,  0.5,  0.6,  0.7,  0.8,  0.9,
+            1.0,  2.0,  3.0,  4.0,  5.0,  6.0,  7.0,  8.0,  9.0, 10.0,
+            11.0, 12.0, 13.0, 14.0, 15.0, 16.0, 17.0, 18.0, 19.0, 20.0, 30.0];
+
+        let columns_r2 = ["S1", "S2", "S3", "em1", "em2", "em3", "disp1", "disp2", "disp3", "beta11", "beta21", "beta31"];
      
 
     // Değerlerin boş veya geçersiz olup olmadığını kontrol et
@@ -117,6 +91,7 @@ document.getElementById("hesaplaButton").addEventListener("click", function(even
         document.getElementById("sonuc").value = "Geçersiz giriş";
     } else {
         // Hesapla ve sonucu göster
+        
         let Heigth_T = num_f * num_h;
         let Mass_T = 2 * mass * num_f;
         let roA = mass / num_h;
@@ -136,6 +111,38 @@ document.getElementById("hesaplaButton").addEventListener("click", function(even
 
         let r2 = E * Iw / (KGAw * H**2);
 
+
+        const { DataFrame } = require('pandas-js');
+        const np = require('numpy-js');
+
+        let df = new DataFrame({
+        index: index_r2,
+        columns: columns_r2,
+        data: data
+        });
+
+        let x = false;
+        for (let i of index_r2) {
+        if (i === r2) {
+            df = df.loc({ rows: r2 });
+            x = true;
+        }
+        }
+
+        if (x !== true) {
+        df.loc({ rows: r2, columns: df.columns }).assign(np.nan);
+        df = df.reindex({ index: df.index.sort(), axis: 0 });
+        df.interpolate({ method: 'polynomial', order: 1 }).round(4);
+        df = df.loc({ rows: r2 });
+        }
+
+        console.log(df.toString());
+
+
         document.getElementById("sonuc").value = Heigth_T;
+        
+
+
+        
     }
 });
