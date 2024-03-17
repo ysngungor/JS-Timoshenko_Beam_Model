@@ -1,4 +1,6 @@
 "use strict";
+//import { DataFrame } from 'pandas-js';
+//import np from 'numpy-js';
 
 document.getElementById("temizleButton").addEventListener("click", function() {
     // Formu seç
@@ -24,6 +26,8 @@ document.getElementById("hesaplaButton").addEventListener("click", function(even
     // Bina Özellikleri
     let num_f = parseInt(document.getElementById("num_f").value);
     let num_h = parseFloat(document.getElementById("num_h").value);
+    let E = parseInt(document.getElementById("E").value);
+    let G = parseInt(document.getElementById("G").value);
     let mass = parseFloat(document.getElementById("mass").value);
 
     // Kolon Özellikleri
@@ -38,7 +42,6 @@ document.getElementById("hesaplaButton").addEventListener("click", function(even
     let plw = parseFloat(document.getElementById("plw").value);
     let ptk = parseFloat(document.getElementById("ptk").value)*10**(-3);
     
-
     // Deprem Parametreleri
     let Sa1 = parseFloat(document.getElementById("Sa1").value);
     let Sa2 = parseFloat(document.getElementById("Sa2").value);
@@ -84,8 +87,7 @@ document.getElementById("hesaplaButton").addEventListener("click", function(even
             11.0, 12.0, 13.0, 14.0, 15.0, 16.0, 17.0, 18.0, 19.0, 20.0, 30.0];
 
         let columns_r2 = ["S1", "S2", "S3", "em1", "em2", "em3", "disp1", "disp2", "disp3", "beta11", "beta21", "beta31"];
-     
-
+    
     // Değerlerin boş veya geçersiz olup olmadığını kontrol et
     if (isNaN(num_f) || isNaN(num_h)) {
         document.getElementById("sonuc").value = "Geçersiz giriş";
@@ -109,11 +111,10 @@ document.getElementById("hesaplaButton").addEventListener("click", function(even
 
         let KGAw = (Iw**2 / beta) * G;
 
-        let r2 = E * Iw / (KGAw * H**2);
+        let r2 = E * Iw / (KGAw * Heigth_T**2);
 
 
-        const { DataFrame } = require('pandas-js');
-        const np = require('numpy-js');
+/*
 
         let df = new DataFrame({
         index: index_r2,
@@ -130,7 +131,7 @@ document.getElementById("hesaplaButton").addEventListener("click", function(even
         }
 
         if (x !== true) {
-        df.loc({ rows: r2, columns: df.columns }).assign(np.nan);
+        df.loc({ rows: r2, columns: df.columns }).assign(nan);
         df = df.reindex({ index: df.index.sort(), axis: 0 });
         df.interpolate({ method: 'polynomial', order: 1 }).round(4);
         df = df.loc({ rows: r2 });
@@ -138,10 +139,13 @@ document.getElementById("hesaplaButton").addEventListener("click", function(even
 
         console.log(df.toString());
 
+*/
 
+
+//console.log(Heigth_T);
         document.getElementById("sonuc").value = Heigth_T;
-        
 
+        document.getElementById("drmax").value = r2;
 
         
     }
