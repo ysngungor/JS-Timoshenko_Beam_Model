@@ -114,6 +114,72 @@ document.getElementById("hesaplaButton").addEventListener("click", function(even
         let r2 = E * Iw / (KGAw * Heigth_T**2);
 
 
+    
+// Matrisi tabloya aktaran fonksiyon
+function matrisiTabloyaAktar(matris) {
+    const tablo = document.getElementById('matrisTablosu');
+    tablo.innerHTML = ''; // Tabloyu temizle
+  
+    // Her satır için döngü oluştur
+    for (let i = 0; i < matris.length; i++) {
+      const satir = document.createElement('tr');
+  
+      // Her sütun için döngü oluştur
+      for (let j = 0; j < matris[i].length; j++) {
+        const hucre = document.createElement('td');
+        hucre.textContent = matris[i][j];
+        hucre.id = `hucre_${i}_${j}`; // Hücrelere id ekle
+        satir.appendChild(hucre);
+      }
+  
+      tablo.appendChild(satir);
+    }
+  }
+  
+  // Matrisi tabloya aktar
+  matrisiTabloyaAktar(matris);
+  
+  // Yeni satır ekleyen ve tabloyu sıralayan fonksiyon
+  function yeniSatirEkleVeSiralama(matris, yeniSatir, index) {
+    // Yeni satırı matrise ekle
+    matris.splice(index, 0, yeniSatir);
+  
+    // Matrisi tabloya yeniden aktar
+    matrisiTabloyaAktar(matris);
+  
+    // Satırları index değerine göre sırala
+    satirlariSutunaGoreSiralama(0); // İlk sütuna göre sıralama
+  }
+  
+  // Örnek olarak (13, 14, 15) elemanlarına sahip yeni bir satır ekleyelim
+  const yeniSatir = ['D', 13, 14, 15];
+  const yeniIndex = 2; // Örnek olarak index 2'ye ekleyelim
+  
+  yeniSatirEkleVeSiralama(matris, yeniSatir, yeniIndex);
+  
+  // Satırları belirli bir sütuna göre sıralayan fonksiyon
+  function satirlariSutunaGoreSiralama(sutunIndex) {
+    const tablo = document.getElementById('matrisTablosu');
+    const satirlar = [...tablo.rows];
+  
+    satirlar.sort((a, b) => {
+      const hucreA = a.cells[sutunIndex];
+      const hucreB = b.cells[sutunIndex];
+      if (hucreA.textContent > hucreB.textContent) {
+        return 1;
+      } else if (hucreA.textContent < hucreB.textContent) {
+        return -1;
+      } else {
+        return 0;
+      }
+    });
+  
+    for (const satir of satirlar) {
+      tablo.appendChild(satir);
+    }
+  }
+    
+
 /*
 
         let df = new DataFrame({
