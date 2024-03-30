@@ -132,8 +132,10 @@ function matrisiTabloyaAktar(matris) {
   }
   
   // Matrisi tabloya aktar
-  matrisiTabloyaAktar(matris);
+  //matrisiTabloyaAktar(matris);
   
+  console.log(matrisiTabloyaAktar(matris));
+  /*
   // Yeni satır ekleyen ve tabloyu sıralayan fonksiyon
   function yeniSatirEkleVeSiralama(matris, yeniSatir, index) {
     // Yeni satırı matrise ekle
@@ -175,8 +177,8 @@ function matrisiTabloyaAktar(matris) {
   }
     
 
-/*
 
+/*
         let df = new DataFrame({
         index: index_r2,
         columns: columns_r2,
@@ -202,8 +204,8 @@ function matrisiTabloyaAktar(matris) {
 
 */
 
-
-//console.log(Heigth_T);
+console.log(matris);
+console.log(Heigth_T);
         document.getElementById("sonuc").value = Heigth_T;
 
         document.getElementById("drmax").value = r2;
