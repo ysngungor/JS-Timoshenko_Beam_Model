@@ -50,7 +50,8 @@ document.getElementById("hesaplaButton").addEventListener("click", function(even
     let Sd2 = parseFloat(document.getElementById("Sd2").value);
     let Sd3 = parseFloat(document.getElementById("Sd3").value);
 
-    let matris = [["Index","S1", "S2", "S3", "em1", "em2", "em3", "disp1", "disp2", "disp3", "beta11", "beta21", "beta31"]
+    let matris = [
+        ["Index","S1", "S2", "S3", "em1", "em2", "em3", "disp1", "disp2", "disp3", "beta11", "beta21", "beta31"],
         [0.0, 1.787,	0.285,	0.102, 0.610, 0.190, 0.070,	1.570, 0.870, 0.510,  null,  null,  null],
         [0.1, 2.171,	0.575,	0.284, 0.687, 0.187, 0.049,	1.500, 0.690, 0.337, 1.792,	2.330, 2.440],
         [0.2, 2.504,	0.740,	0.383, 0.722, 0.162, 0.043,	1.460, 0.630, 0.310, 1.686,	2.380, 2.268],
@@ -81,7 +82,8 @@ document.getElementById("hesaplaButton").addEventListener("click", function(even
         [18.0, 17.057, 5.684,	3.398, 0.813, 0.086, 0.035,	1.276, 0.416, 0.263, 1.972,	1.946, 2.058],
         [19.0, 17.520, 5.838,	3.491, 0.814, 0.086, 0.035,	1.275, 0.415, 0.263, 1.973,	1.945, 2.058],
         [20.0, 17.971, 5.988,	3.581, 0.814, 0.086, 0.035,	1.275, 0.415, 0.263, 1.974,	1.945, 2.058],
-        [30.0, 21.977, 7.324,	4.385, 0.810, 0.086, 0.035,	1.270, 0.410, 0.260, 1.980,	1.940, 2.060]];
+        [30.0, 21.977, 7.324,	4.385, 0.810, 0.086, 0.035,	1.270, 0.410, 0.260, 1.980,	1.940, 2.060]
+      ];
     
     // Değerlerin boş veya geçersiz olup olmadığını kontrol et
     if (isNaN(num_f) || isNaN(num_h)) {
@@ -134,8 +136,8 @@ function matrisiTabloyaAktar(matris) {
   // Matrisi tabloya aktar
   //matrisiTabloyaAktar(matris);
   
-  console.log(matrisiTabloyaAktar(matris));
-  /*
+  matrisiTabloyaAktar(matris);
+  
   // Yeni satır ekleyen ve tabloyu sıralayan fonksiyon
   function yeniSatirEkleVeSiralama(matris, yeniSatir, index) {
     // Yeni satırı matrise ekle
@@ -149,7 +151,7 @@ function matrisiTabloyaAktar(matris) {
   }
   
   // Örnek olarak (13, 14, 15) elemanlarına sahip yeni bir satır ekleyelim
-  const yeniSatir = ['D', 13, 14, 15];
+  const yeniSatir = [12.25, 14, 4.7,	2.8, 0.9, 0.1, 0.4,	1.3, 0.42, 0.3, 1.97,	1.96, 2.1];
   const yeniIndex = 2; // Örnek olarak index 2'ye ekleyelim
   
   yeniSatirEkleVeSiralama(matris, yeniSatir, yeniIndex);
