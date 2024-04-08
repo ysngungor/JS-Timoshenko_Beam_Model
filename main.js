@@ -149,11 +149,86 @@ function matrisiTabloyaAktar(matris) {
     // Satırları index değerine göre sırala
     satirlariSutunaGoreSiralama(0); // İlk sütuna göre sıralama
   }
+
+  // Newton Enterpolasyonu kullanarak değerleri bulan fonksiyon
+function newtonEnterpolasyonu(r2, matris) {
+  // Uygun aralığı bul
+  let index = null;
+  for (let i = 1; i < matris.length; i++) {
+      const r2Degeri = matris[i][0]; // İlgili satırın r2 değeri
+      if (r2Degeri === r2) {
+          index = i; // Tam eşleşme varsa, o satırı kullan
+          break;
+      } else if (r2Degeri > r2) {
+          index = i; // Aranan r2 değerinden büyük ilk değeri kullan
+          break;
+      }
+  }
+
+  // Uygun aralık bulunamadıysa null döndür
+  if (index === null) {
+      return null;
+  }
+
+  // Newton Enterpolasyonu için gereken değerleri hesapla
+  const x = r2; // Aranan r2 değeri
+  const x0 = matris[index - 1][0];
+  const x1 = matris[index][0];
+  const y0 = matris[index - 1].slice(1); // İlgili satırın değerleri
+  const y1 = matris[index].slice(1); // İlgili satırın değerleri
+
+  // Newton Enterpolasyonu formülü
+  const f = (x - x0) / (x1 - x0);
+  const interpolValues = y0.map((y0i, i) => y0i + f * (y1[i] - y0i));
+
+  return interpolValues;
+}
+
+// Örnek olarak r2 değeri ile ilgili matrisin değerlerini Newton Enterpolasyonu ile getirelim
+const r2Degeri = 123; // Örnek olarak bir r2 değeri
+const interpolDegerler = newtonEnterpolasyonu(r2Degeri, matris);
+console.log(interpolDegerler); // İlgili değerleri içeren yeni bir satır elde edilir
+
+  /*
+  function enterpolasyonYap(matris, hedefR2) {
+    let ustSatir = null;
+    let altSatir = null;
   
-  // Örnek olarak (13, 14, 15) elemanlarına sahip yeni bir satır ekleyelim
+    for (let i = 1; i < matris.length; i++) {
+      if (matris[i][matris[i].length - 1] <= hedefR2) {
+        altSatir = matris[i - 1];
+        ustSatir = matris[i];
+        break;
+      }
+    }
+  
+    if (ustSatir && altSatir) {
+      return enterpolasyonYap(ustSatir, altSatir, hedefR2);
+    } else {
+      return null; // Hedef r2 değerine uygun satır bulunamadı
+    }
+  }
+
+  const hedefR2 = hesaplananR2; // hesaplananR2 değişkeni r2 değerini içermeli
+  const enterpolasyonluSatir = enterpolasyonYap(matris, hedefR2);
+  
+  if (enterpolasyonluSatir) {
+    const S1 = enterpolasyonluSatir[1];
+    const em1 = enterpolasyonluSatir[2];
+    const disp1 = enterpolasyonluSatir[3];
+  
+    // Katsayılarınızı kullanarak işlemlerinizi gerçekleştirin
+  } else {
+    console.log('Hedef r2 değerine uygun satır bulunamadı.');
+  }
+
+  console.log(S1)
+  */
+/*
+  // Örnek olarak yeniSatir elemanlarına sahip yeni bir satır ekleyelim
   const yeniSatir = [12.25, 14, 4.7,	2.8, 0.9, 0.1, 0.4,	1.3, 0.42, 0.3, 1.97,	1.96, 2.1];
   const yeniIndex = 2; // Örnek olarak index 2'ye ekleyelim
-  
+  */
   yeniSatirEkleVeSiralama(matris, yeniSatir, yeniIndex);
   
   // Satırları belirli bir sütuna göre sıralayan fonksiyon
@@ -164,15 +239,15 @@ function matrisiTabloyaAktar(matris) {
     satirlar.sort((a, b) => {
       const hucreA = a.cells[sutunIndex];
       const hucreB = b.cells[sutunIndex];
-      if (hucreA.textContent > hucreB.textContent) {
-        return 1;
-      } else if (hucreA.textContent < hucreB.textContent) {
-        return -1;
-      } else {
-        return 0;
-      }
+
+      // Sayıları karşılaştırmak için Number() kullanarak tür dönüşümü yap
+      const degerA = Number(hucreA.textContent);
+      const degerB = Number(hucreB.textContent);
+      
+      // Sayısal sıralama yap
+      return degerA - degerB;
     });
-  
+    
     for (const satir of satirlar) {
       tablo.appendChild(satir);
     }
@@ -180,37 +255,12 @@ function matrisiTabloyaAktar(matris) {
     
 
 
-/*
-        let df = new DataFrame({
-        index: index_r2,
-        columns: columns_r2,
-        data: data
-        });
-
-        let x = false;
-        for (let i of index_r2) {
-        if (i === r2) {
-            df = df.loc({ rows: r2 });
-            x = true;
-        }
-        }
-
-        if (x !== true) {
-        df.loc({ rows: r2, columns: df.columns }).assign(nan);
-        df = df.reindex({ index: df.index.sort(), axis: 0 });
-        df.interpolate({ method: 'polynomial', order: 1 }).round(4);
-        df = df.loc({ rows: r2 });
-        }
-
-        console.log(df.toString());
-
-*/
 
 console.log(matris);
 console.log(Heigth_T);
         document.getElementById("sonuc").value = Heigth_T;
 
-        document.getElementById("drmax").value = r2;
+        document.getElementById("drmax").value = S1;
 
         
     }
