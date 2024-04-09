@@ -1,6 +1,4 @@
 "use strict";
-//import { DataFrame } from 'pandas-js';
-//import np from 'numpy-js';
 
 document.getElementById("temizleButton").addEventListener("click", function() {
     // Formu seç
@@ -110,33 +108,6 @@ document.getElementById("hesaplaButton").addEventListener("click", function(even
 
         let r2 = E * Iw / (KGAw * Heigth_T**2);
 
-/*        
-// Matrisi tabloya aktaran fonksiyon
-function matrisiTabloyaAktar(matris) {
-    const tablo = document.getElementById('matrisTablosu');
-    tablo.innerHTML = ''; // Tabloyu temizle
-  
-    // Her satır için döngü oluştur
-    for (let i = 0; i < matris.length; i++) {
-      const satir = document.createElement('tr');
-  
-      // Her sütun için döngü oluştur
-      for (let j = 0; j < matris[i].length; j++) {
-        const hucre = document.createElement('td');
-        hucre.textContent = matris[i][j];
-        hucre.id = `hucre_${i}_${j}`; // Hücrelere id ekle
-        satir.appendChild(hucre);
-      }
-  
-      tablo.appendChild(satir);
-    }
-  }
-  
-  // Matrisi tabloya aktar  
-  matrisiTabloyaAktar(matris);
-  */
-
-
   // Newton Enterpolasyonu kullanarak değerleri bulan fonksiyon
 function newtonEnterpolasyonu(r2, matris) {
   // Uygun aralığı bul
@@ -151,19 +122,16 @@ function newtonEnterpolasyonu(r2, matris) {
           break;
       }
   }
-
   // Uygun aralık bulunamadıysa null döndür
   if (index === null) {
       return null;
   }
-
   // Newton Enterpolasyonu için gereken değerleri hesapla
   const x = r2; // Aranan r2 değeri
   const x0 = matris[index - 1][0];
   const x1 = matris[index][0];
   const y0 = matris[index - 1].slice(1); // İlgili satırın değerleri
   const y1 = matris[index].slice(1); // İlgili satırın değerleri
-
   // Newton Enterpolasyonu formülü
   const f = (x - x0) / (x1 - x0);
   const interpolValues = y0.map((y0i, i) => y0i + f * (y1[i] - y0i));
@@ -172,11 +140,8 @@ function newtonEnterpolasyonu(r2, matris) {
 }
 
 // Örnek olarak r2 değeri ile ilgili matrisin değerlerini Newton Enterpolasyonu ile getirelim
-const r2Degeri = 30; // Örnek olarak bir r2 değeri
-const interpolDegerler = newtonEnterpolasyonu(r2Degeri, matris);
-console.log(interpolDegerler); // İlgili değerleri içeren yeni bir satır elde edilir
+const interpolDegerler = newtonEnterpolasyonu(r2, matris);
 
- 
 const S1 = interpolDegerler[0];
 const S2 = interpolDegerler[1];
 const S3 = interpolDegerler[2];
@@ -192,30 +157,80 @@ const disp3 = interpolDegerler[8];
 const beta11 = interpolDegerler[9];
 const beta21 = interpolDegerler[10];
 const beta31 = interpolDegerler[11];
-  
+     
+let correction = [
+    ["Floor",  "Mode1",  "Mode2", "Mode3"],
+    [1, 0.492,  null,  null], [2, 0.664, 0.704,  null], [3, 0.749, 0.781, 0.751],
+    [4, 0.799, 0.821, 0.829], [5, 0.833, 0.848, 0.860], [6, 0.857, 0.868, 0.878],
+    [7, 0.875, 0.883, 0.892], [8, 0.889, 0.895, 0.903], [9, 0.900, 0.905, 0.912],
+    [10, 0.909, 0.913, 0.919], [11, 0.917, 0.920, 0.925], [12, 0.923, 0.926, 0.931],
+    [13, 0.928, 0.931, 0.935], [14, 0.933, 0.935, 0.939], [15, 0.937, 0.939, 0.943],
+    [16, 0.941, 0.943, 0.946], [17, 0.944, 0.946, 0.949], [18, 0.947, 0.948, 0.952],
+    [19, 0.950, 0.951, 0.954], [20, 0.952, 0.953, 0.956], [21, 0.954, 0.955, 0.958],
+    [22, 0.956, 0.957, 0.960], [23, 0.958, 0.959, 0.962], [24, 0.960, 0.960, 0.963],
+    [25, 0.961, 0.962, 0.965], [26, 0.963, 0.963, 0.966], [27, 0.964, 0.964, 0.967],
+    [28, 0.965, 0.966, 0.968], [29, 0.967, 0.967, 0.969], [30, 0.968, 0.968, 0.970]
+    ];
+
+  function getirSatir(index, correction) {
+    // Verilen index'e karşılık gelen satırı seç
+    const satir = correction[index];
     
-console.log(S1)
-console.log(S2)
-console.log(S3)
-console.log(em1)
-console.log(em2)
-console.log(em3)
-console.log(disp1)
-console.log(disp2)
-console.log(disp3)
-console.log(beta11)
-console.log(beta21)
-console.log(beta31)
+    // İlk sütun (index) değerini çıkararak geri kalan değerleri döndür
+    const degerler = satir.slice(1); 
+    
+    return degerler;
+}
 
-  
+// Örnek olarak index değeri ile ilgili satırın değerlerini getirelim
+const satirDegerleri = getirSatir(num_f, correction);
 
+const mode1 = satirDegerleri[0];
+const mode2 = satirDegerleri[1];
+const mode3 = satirDegerleri[2];
 
-console.log(matris);
-console.log(Heigth_T);
-        document.getElementById("sonuc").value = Heigth_T;
+let T1 = (S1 * Heigth_T**2 / mode1) * (roA / (E * Iw))**0.5
+let T2 = (S2 * Heigth_T**2 / mode2) * (roA / (E * Iw))**0.5
+let T3 = (S3 * Heigth_T**2 / mode3) * (roA / (E * Iw))**0.5
 
-        document.getElementById("drmax").value = r2;
+let Vb1 = em1 * Mass_T * Sa1
+let Vb2 = em2 * Mass_T * Sa2
+let Vb3 = em3 * Mass_T * Sa3
 
-        
-    }
+let Vb = (Vb1**2 + Vb2**2 + Vb3**2)**0.5
+
+let dmax1 = disp1 * Sd1
+let dmax2 = disp2 * Sd2
+let dmax3 = disp3 * Sd3
+
+let dmax = (dmax1**2 + dmax2**2 + dmax3**2)**0.5
+
+let dr11 = beta11 * Sd1 / Heigth_T
+let dr21 = beta21 * Sd2 / Heigth_T
+let dr31 = beta31 * Sd3 / Heigth_T
+
+let drmax = (dr11**2 + dr21**2 + dr31**2)**0.5
+
+document.getElementById("T1").value = T1.toFixed(3);
+document.getElementById("T2").value = T2.toFixed(3);
+document.getElementById("T3").value = T3.toFixed(3);
+
+document.getElementById("Vb1").value = Vb1.toFixed(3);
+document.getElementById("Vb2").value = Vb2.toFixed(3);
+document.getElementById("Vb3").value = Vb3.toFixed(3);
+
+document.getElementById("Vb").value = Vb.toFixed(3);
+
+document.getElementById("dmax1").value = dmax1.toFixed(4);
+document.getElementById("dmax2").value = dmax2.toFixed(4);
+document.getElementById("dmax3").value = dmax3.toFixed(4);
+
+document.getElementById("dmax").value = dmax.toFixed(4);
+
+document.getElementById("dr11").value = dr11.toFixed(6);
+document.getElementById("dr21").value = dr21.toFixed(6);
+document.getElementById("dr31").value = dr31.toFixed(6);
+
+document.getElementById("drmax").value = drmax.toFixed(6);
+}
 });
