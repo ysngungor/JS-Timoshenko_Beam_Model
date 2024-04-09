@@ -137,52 +137,6 @@ function matrisiTabloyaAktar(matris) {
   */
 
 
-
-
-/*
-
-  // Yeni satır ekleyen ve tabloyu sıralayan fonksiyon
-  function yeniSatirEkleVeSiralama(matris, yeniSatir, index) {
-    // Yeni satırı matrise ekle
-    matris.splice(index, 0, yeniSatir);
-  
-    // Matrisi tabloya yeniden aktar
-    matrisiTabloyaAktar(matris);
-  
-    // Satırları index değerine göre sırala
-    satirlariSutunaGoreSiralama(0); // İlk sütuna göre sıralama
-  }
-
-// Örnek olarak yeniSatir elemanlarına sahip yeni bir satır ekleyelim
-const yeniSatir = [12.25, 14, 4.7,	2.8, 0.9, 0.1, 0.4,	1.3, 0.42, 0.3, 1.97,	1.96, 2.1];
-const yeniIndex = 2; // Örnek olarak index 2'ye ekleyelim
-
-
-  yeniSatirEkleVeSiralama(matris, yeniSatir, yeniIndex);
-  
-  // Satırları belirli bir sütuna göre sıralayan fonksiyon
-  function satirlariSutunaGoreSiralama(sutunIndex) {
-    const tablo = document.getElementById('matrisTablosu');
-    const satirlar = [...tablo.rows];
-  
-    satirlar.sort((a, b) => {
-      const hucreA = a.cells[sutunIndex];
-      const hucreB = b.cells[sutunIndex];
-
-      // Sayıları karşılaştırmak için Number() kullanarak tür dönüşümü yap
-      const degerA = Number(hucreA.textContent);
-      const degerB = Number(hucreB.textContent);
-      
-      // Sayısal sıralama yap
-      return degerA - degerB;
-    });
-    
-    for (const satir of satirlar) {
-      tablo.appendChild(satir);
-    }
-  }
-    */
-
   // Newton Enterpolasyonu kullanarak değerleri bulan fonksiyon
 function newtonEnterpolasyonu(r2, matris) {
   // Uygun aralığı bul
@@ -218,47 +172,40 @@ function newtonEnterpolasyonu(r2, matris) {
 }
 
 // Örnek olarak r2 değeri ile ilgili matrisin değerlerini Newton Enterpolasyonu ile getirelim
-const r2Degeri = r2; // Örnek olarak bir r2 değeri
+const r2Degeri = 30; // Örnek olarak bir r2 değeri
 const interpolDegerler = newtonEnterpolasyonu(r2Degeri, matris);
 console.log(interpolDegerler); // İlgili değerleri içeren yeni bir satır elde edilir
 
-  /*
-  function enterpolasyonYap(matris, hedefR2) {
-    let ustSatir = null;
-    let altSatir = null;
-  
-    for (let i = 1; i < matris.length; i++) {
-      if (matris[i][matris[i].length - 1] <= hedefR2) {
-        altSatir = matris[i - 1];
-        ustSatir = matris[i];
-        break;
-      }
-    }
-  
-    if (ustSatir && altSatir) {
-      return enterpolasyonYap(ustSatir, altSatir, hedefR2);
-    } else {
-      return null; // Hedef r2 değerine uygun satır bulunamadı
-    }
-  }
+ 
+const S1 = interpolDegerler[0];
+const S2 = interpolDegerler[1];
+const S3 = interpolDegerler[2];
 
-  const hedefR2 = hesaplananR2; // hesaplananR2 değişkeni r2 değerini içermeli
-  const enterpolasyonluSatir = enterpolasyonYap(matris, hedefR2);
-  
-  if (enterpolasyonluSatir) {
-    const S1 = enterpolasyonluSatir[1];
-    const em1 = enterpolasyonluSatir[2];
-    const disp1 = enterpolasyonluSatir[3];
-  
-    // Katsayılarınızı kullanarak işlemlerinizi gerçekleştirin
-  } else {
-    console.log('Hedef r2 değerine uygun satır bulunamadı.');
-  }
+const em1 = interpolDegerler[3];
+const em2 = interpolDegerler[4];
+const em3 = interpolDegerler[5];
 
-  console.log(S1)
-  */
+const disp1 = interpolDegerler[6];
+const disp2 = interpolDegerler[7];
+const disp3 = interpolDegerler[8];
 
+const beta11 = interpolDegerler[9];
+const beta21 = interpolDegerler[10];
+const beta31 = interpolDegerler[11];
   
+    
+console.log(S1)
+console.log(S2)
+console.log(S3)
+console.log(em1)
+console.log(em2)
+console.log(em3)
+console.log(disp1)
+console.log(disp2)
+console.log(disp3)
+console.log(beta11)
+console.log(beta21)
+console.log(beta31)
 
   
 
@@ -267,7 +214,7 @@ console.log(matris);
 console.log(Heigth_T);
         document.getElementById("sonuc").value = Heigth_T;
 
-       // document.getElementById("drmax").value = S1;
+        document.getElementById("drmax").value = r2;
 
         
     }
