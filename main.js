@@ -110,8 +110,7 @@ document.getElementById("hesaplaButton").addEventListener("click", function(even
 
         let r2 = E * Iw / (KGAw * Heigth_T**2);
 
-
-    
+/*        
 // Matrisi tabloya aktaran fonksiyon
 function matrisiTabloyaAktar(matris) {
     const tablo = document.getElementById('matrisTablosu');
@@ -133,11 +132,15 @@ function matrisiTabloyaAktar(matris) {
     }
   }
   
-  // Matrisi tabloya aktar
-  //matrisiTabloyaAktar(matris);
-  
+  // Matrisi tabloya aktar  
   matrisiTabloyaAktar(matris);
-  
+  */
+
+
+
+
+/*
+
   // Yeni satır ekleyen ve tabloyu sıralayan fonksiyon
   function yeniSatirEkleVeSiralama(matris, yeniSatir, index) {
     // Yeni satırı matrise ekle
@@ -149,6 +152,36 @@ function matrisiTabloyaAktar(matris) {
     // Satırları index değerine göre sırala
     satirlariSutunaGoreSiralama(0); // İlk sütuna göre sıralama
   }
+
+// Örnek olarak yeniSatir elemanlarına sahip yeni bir satır ekleyelim
+const yeniSatir = [12.25, 14, 4.7,	2.8, 0.9, 0.1, 0.4,	1.3, 0.42, 0.3, 1.97,	1.96, 2.1];
+const yeniIndex = 2; // Örnek olarak index 2'ye ekleyelim
+
+
+  yeniSatirEkleVeSiralama(matris, yeniSatir, yeniIndex);
+  
+  // Satırları belirli bir sütuna göre sıralayan fonksiyon
+  function satirlariSutunaGoreSiralama(sutunIndex) {
+    const tablo = document.getElementById('matrisTablosu');
+    const satirlar = [...tablo.rows];
+  
+    satirlar.sort((a, b) => {
+      const hucreA = a.cells[sutunIndex];
+      const hucreB = b.cells[sutunIndex];
+
+      // Sayıları karşılaştırmak için Number() kullanarak tür dönüşümü yap
+      const degerA = Number(hucreA.textContent);
+      const degerB = Number(hucreB.textContent);
+      
+      // Sayısal sıralama yap
+      return degerA - degerB;
+    });
+    
+    for (const satir of satirlar) {
+      tablo.appendChild(satir);
+    }
+  }
+    */
 
   // Newton Enterpolasyonu kullanarak değerleri bulan fonksiyon
 function newtonEnterpolasyonu(r2, matris) {
@@ -185,7 +218,7 @@ function newtonEnterpolasyonu(r2, matris) {
 }
 
 // Örnek olarak r2 değeri ile ilgili matrisin değerlerini Newton Enterpolasyonu ile getirelim
-const r2Degeri = 123; // Örnek olarak bir r2 değeri
+const r2Degeri = r2; // Örnek olarak bir r2 değeri
 const interpolDegerler = newtonEnterpolasyonu(r2Degeri, matris);
 console.log(interpolDegerler); // İlgili değerleri içeren yeni bir satır elde edilir
 
@@ -224,43 +257,17 @@ console.log(interpolDegerler); // İlgili değerleri içeren yeni bir satır eld
 
   console.log(S1)
   */
-/*
-  // Örnek olarak yeniSatir elemanlarına sahip yeni bir satır ekleyelim
-  const yeniSatir = [12.25, 14, 4.7,	2.8, 0.9, 0.1, 0.4,	1.3, 0.42, 0.3, 1.97,	1.96, 2.1];
-  const yeniIndex = 2; // Örnek olarak index 2'ye ekleyelim
-  */
-  yeniSatirEkleVeSiralama(matris, yeniSatir, yeniIndex);
-  
-  // Satırları belirli bir sütuna göre sıralayan fonksiyon
-  function satirlariSutunaGoreSiralama(sutunIndex) {
-    const tablo = document.getElementById('matrisTablosu');
-    const satirlar = [...tablo.rows];
-  
-    satirlar.sort((a, b) => {
-      const hucreA = a.cells[sutunIndex];
-      const hucreB = b.cells[sutunIndex];
 
-      // Sayıları karşılaştırmak için Number() kullanarak tür dönüşümü yap
-      const degerA = Number(hucreA.textContent);
-      const degerB = Number(hucreB.textContent);
-      
-      // Sayısal sıralama yap
-      return degerA - degerB;
-    });
-    
-    for (const satir of satirlar) {
-      tablo.appendChild(satir);
-    }
-  }
-    
+  
 
+  
 
 
 console.log(matris);
 console.log(Heigth_T);
         document.getElementById("sonuc").value = Heigth_T;
 
-        document.getElementById("drmax").value = S1;
+       // document.getElementById("drmax").value = S1;
 
         
     }
