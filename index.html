@@ -7,83 +7,100 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <header>
+        <h1>Timoshenko Kiriş Modeli Hesap Yöntemi</h1>
+    </header>
     <img src="/images/tbmref.png" alt="" width="400">
-    <div class="container">
+    <main>
         <form id="form1">
-        <div>    
-            <h3>Yapı Bilgileri</h3>
-                <label>Kat Adedi: <input type="number" placeholder="4" id="num_f" value="4"/></label></br>
-                <label>Kat Yüksekliği: <input type="number" placeholder="3.29" id="num_h" value="3.29"/> m</label></br>
-                <label>Elastisite Modülü: <input type="number" placeholder="200000000" id="E" value="200000000"/> kN/m<sup>2</sup></label></br> 
-                <label>Kayma Modülü: <input type="number" placeholder="77000000" id="G" value="77000000"/> kN/m<sup>2</sup></label></br>
-                <label>Kütle: <input type="number" placeholder="150" id="mass" value="150"/> t/kat</label></br>
-        </div>        
-        <div>    
-            <h3>Kolon Profil Özellikleri</h3>
-            <h5>(HD400x287)</h5> 
-                <label>Atalet Momenti: <input type="number" placeholder="99710" id="Ic" value="99710"/> cm<sup>4</sup></label></br> <!-- metreye çevir -->
-                <label>Kesit Alanı: <input type="number" placeholder="366.3" id="Ac" value="366.3" /> cm<sup>2</sup></label></br> <!-- metreye çevir -->
-                <label>Yükseklik: <input type="number" placeholder="393" id="d" value="393" /> mm</label></br> <!-- metreye çevir -->
-                <label>Flanş Alanı: <input type="number" placeholder="14603.4" id="Afl" value="14603.4" /> mm<sup>2</sup></label></br> <!-- metreye çevir -->
-                <label>Gövde Alanı: <input type="number" placeholder="8881.8" id="Aweb" value="8881.8" /> mm<sup>2</sup></label></br> <!-- metreye çevir -->
-                <label>Gövde Kalınlığı: <input type="number" placeholder="22.6" id="tweb" value="22.6" /> mm</label></br> <!-- metreye çevir -->
-        </div>
-        <div>
-            <h3>SPSW Özellikleri</h3>
-                <label>Levha Genişliği: <input type="number" placeholder="3" id="plw" value="3"/> m</label></br>
-                <label>Levha Kalınlığı: <input type="number" placeholder="3" id="ptk" value="3"/> mm</label></br> <!-- metreye çevir -->       
-        </div>
-        <div>    
-            <h3>Deprem Parametreleri</h3>
-                <label>Sa<sub>1</sub>: <input type="number" placeholder="1.752008" id="Sa1" value="1.752008"/> m/s<sup>2</sup></label></br>
-                <label>Sa<sub>2</sub>: <input type="number" placeholder="2.819928" id="Sa2" value="2.819928"/> m/s<sup>2</sup></label></br>
-                <label>Sa<sub>3</sub>: <input type="number" placeholder="2.553271" id="Sa3" value="2.553271"/> m/s<sup>2</sup></label></br>
-                <label>Sd<sub>1</sub>: <input type="number" placeholder="0.016318" id="Sd1" value="0.016318"/> m</label></br>
-                <label>Sd<sub>2</sub>: <input type="number" placeholder="0.002344" id="Sd2" value="0.002344"/> m</label></br>
-                <label>Sd<sub>3</sub>: <input type="number" placeholder="0.000582" id="Sd3" value="0.000582"/> m</label></br>
-        </div>  
-        
-        
-        
-        <div>    
-            <h3>Periyot Değerleri</h3> 
-                <label>T<sub>1</sub>: <input type="text" id="T1" readonly> s</label></br>
-                <label>T<sub>2</sub>: <input type="text" id="T2" readonly> s</label></br>
-                <label>T<sub>3</sub>: <input type="text" id="T3" readonly> s</label></br>
-        </div>
-        <div>    
-            <h3>Taban Kesme Kuvveti</h3> 
-                <label>Vb<sub>1</sub>: <input type="text" id="Vb1" readonly> kN</label></br>
-                <label>Vb<sub>2</sub>: <input type="text" id="Vb2" readonly> kN</label></br>
-                <label>Vb<sub>3</sub>: <input type="text" id="Vb3" readonly> kN</label></br>
+            <fieldset>
+                <legend>Yapı Bilgileri</legend>
+                <div>    
+                    <label>Kat Adedi: <input type="number" placeholder="4" id="num_f" value="4"/></label></br>
+                    <label>Kat Yüksekliği: <input type="number" placeholder="3.29" id="num_h" value="3.29"/> m</label></br>
+                    <label>Elastisite Modülü: <input type="number" placeholder="200000000" id="E" value="200000000"/> kN/m<sup>2</sup></label></br> 
+                    <label>Kayma Modülü: <input type="number" placeholder="77000000" id="G" value="77000000"/> kN/m<sup>2</sup></label></br>
+                    <label>Kütle: <input type="number" placeholder="150" id="mass" value="150"/> t/kat</label></br>
+                </div>     
+            </fieldset>
+            <fieldset>
+                <legend>Kolon Profil Özellikleri</legend>
+                <div>    
+                <h5>(HD400x287)</h5> 
+                    <label>Atalet Momenti: <input type="number" placeholder="99710" id="Ic" value="99710"/> cm<sup>4</sup></label></br> <!-- metreye çevir -->
+                    <label>Kesit Alanı: <input type="number" placeholder="366.3" id="Ac" value="366.3" /> cm<sup>2</sup></label></br> <!-- metreye çevir -->
+                    <label>Yükseklik: <input type="number" placeholder="393" id="d" value="393" /> mm</label></br> <!-- metreye çevir -->
+                    <label>Flanş Alanı: <input type="number" placeholder="14603.4" id="Afl" value="14603.4" /> mm<sup>2</sup></label></br> <!-- metreye çevir -->
+                    <label>Gövde Alanı: <input type="number" placeholder="8881.8" id="Aweb" value="8881.8" /> mm<sup>2</sup></label></br> <!-- metreye çevir -->
+                    <label>Gövde Kalınlığı: <input type="number" placeholder="22.6" id="tweb" value="22.6" /> mm</label></br> <!-- metreye çevir -->
+                </div>
+            </fieldset>
+            <fieldset>
+                <legend>SPSW Özellikleri</legend>
+                <div>
+                    <label>Levha Genişliği: <input type="number" placeholder="3" id="plw" value="3"/> m</label></br>
+                    <label>Levha Kalınlığı: <input type="number" placeholder="3" id="ptk" value="3"/> mm</label></br> <!-- metreye çevir -->       
+                </div>
+            </fieldset>
+            <fieldset>
+                <legend>Deprem Parametreleri</legend>
+                <div>    
+                    <label>Sa<sub>1</sub>: <input type="number" placeholder="1.752008" id="Sa1" value="1.752008"/> m/s<sup>2</sup></label></br>
+                    <label>Sa<sub>2</sub>: <input type="number" placeholder="2.819928" id="Sa2" value="2.819928"/> m/s<sup>2</sup></label></br>
+                    <label>Sa<sub>3</sub>: <input type="number" placeholder="2.553271" id="Sa3" value="2.553271"/> m/s<sup>2</sup></label></br>
+                    <label>Sd<sub>1</sub>: <input type="number" placeholder="0.016318" id="Sd1" value="0.016318"/> m</label></br>
+                    <label>Sd<sub>2</sub>: <input type="number" placeholder="0.002344" id="Sd2" value="0.002344"/> m</label></br>
+                    <label>Sd<sub>3</sub>: <input type="number" placeholder="0.000582" id="Sd3" value="0.000582"/> m</label></br>
+                </div>  
+            </fieldset>
+            <fieldset>
+                <legend>Periyot Değerleri</legend>
+                <div>     
+                    <label>T<sub>1</sub>: <input type="text" id="T1" readonly> s</label></br>
+                    <label>T<sub>2</sub>: <input type="text" id="T2" readonly> s</label></br>
+                    <label>T<sub>3</sub>: <input type="text" id="T3" readonly> s</label></br>
+                </div>
+            </fieldset>
+            <fieldset>
+                <legend>Taban Kesme Kuvveti</legend>
+                <div>    
+                    <label>Vb<sub>1</sub>: <input type="text" id="Vb1" readonly> kN</label></br>
+                    <label>Vb<sub>2</sub>: <input type="text" id="Vb2" readonly> kN</label></br>
+                    <label>Vb<sub>3</sub>: <input type="text" id="Vb3" readonly> kN</label></br>
                     <p>
                         <label>V<sub>b</sub>: <input type="text" id="Vb" readonly> kN</label></br>
                     </p>
-        </div>
-        <div>    
-            <h3>Tepe Noktası Maksimum Yerdeğiştirme</h3> 
-                <label>dmax<sub>1</sub>: <input type="text" id="dmax1" readonly> m</label></br>
-                <label>dmax<sub>2</sub>: <input type="text" id="dmax2" readonly> m</label></br>
-                <label>dmax<sub>3</sub>: <input type="text" id="dmax3" readonly> m</label></br>
+                </div>
+            </fieldset>
+            <fieldset>
+                <legend>Tepe Noktası Maksimum Yerdeğiştirme</legend>
+                <div>    
+                    <label>dmax<sub>1</sub>: <input type="text" id="dmax1" readonly> m</label></br>
+                    <label>dmax<sub>2</sub>: <input type="text" id="dmax2" readonly> m</label></br>
+                    <label>dmax<sub>3</sub>: <input type="text" id="dmax3" readonly> m</label></br>
                     <p>
                         <label>dmax: <input type="text" id="dmax" readonly> m</label></br>
                     </p>
-        </div>
-        <div>    
-            <h3>Maksimum Göreli Kat Ötelemesi</h3> 
-                <label>dr<sub>11</sub>: <input type="text" id="dr11" readonly></label></br>
-                <label>dr<sub>21</sub>: <input type="text" id="dr21" readonly></label></br>
-                <label>dr<sub>31</sub>: <input type="text" id="dr31" readonly></label></br>
+                </div>
+            </fieldset>
+            <fieldset>
+                <legend>Maksimum Göreli Kat Ötelemesi</legend>
+                <div>    
+                    <label>dr<sub>11</sub>: <input type="text" id="dr11" readonly></label></br>
+                    <label>dr<sub>21</sub>: <input type="text" id="dr21" readonly></label></br>
+                    <label>dr<sub>31</sub>: <input type="text" id="dr31" readonly></label></br>
                     <p>
                         <label>drmax: <input type="text" id="drmax" readonly></label></br>
                     </p>
-        </div>
+                </div>
+            </fieldset>
 
         <button id="hesaplaButton" type="button">Hesapla</button>
         <button type="button" id="temizleButton">Temizle</button>
         <button type="button" id="resetButton">Reset</button>
         </form>
-    </div>
+    </main>
+    <footer>Final</footer>
 </body>
 
     <script src="main.js"></script>
