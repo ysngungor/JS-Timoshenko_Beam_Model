@@ -13,7 +13,7 @@
     <img src="/images/tbmref.png" alt="" width="400">
     <main>
         <form id="form1">
-            <fieldset>
+            <fieldset data-input-count="5">
                 <legend>Yapı Bilgileri</legend>
                 <div>    
                     <label>Kat Adedi: <input type="number" placeholder="4" id="num_f" value="4"/></label></br>
@@ -23,7 +23,7 @@
                     <label>Kütle: <input type="number" placeholder="150" id="mass" value="150"/> t/kat</label></br>
                 </div>     
             </fieldset>
-            <fieldset>
+            <fieldset data-input-count="6">
                 <legend>Kolon Profil Özellikleri</legend>
                 <div>    
                 <h5>(HD400x287)</h5> 
@@ -35,14 +35,14 @@
                     <label>Gövde Kalınlığı: <input type="number" placeholder="22.6" id="tweb" value="22.6" /> mm</label></br> <!-- metreye çevir -->
                 </div>
             </fieldset>
-            <fieldset>
+            <fieldset data-input-count="2">
                 <legend>SPSW Özellikleri</legend>
                 <div>
                     <label>Levha Genişliği: <input type="number" placeholder="3" id="plw" value="3"/> m</label></br>
                     <label>Levha Kalınlığı: <input type="number" placeholder="3" id="ptk" value="3"/> mm</label></br> <!-- metreye çevir -->       
                 </div>
             </fieldset>
-            <fieldset>
+            <fieldset data-input-count="6">
                 <legend>Deprem Parametreleri</legend>
                 <div>    
                     <label>Sa<sub>1</sub>: <input type="number" placeholder="1.752008" id="Sa1" value="1.752008"/> m/s<sup>2</sup></label></br>
@@ -53,7 +53,7 @@
                     <label>Sd<sub>3</sub>: <input type="number" placeholder="0.000582" id="Sd3" value="0.000582"/> m</label></br>
                 </div>  
             </fieldset>
-            <fieldset>
+            <fieldset data-input-count="3">
                 <legend>Periyot Değerleri</legend>
                 <div>     
                     <label>T<sub>1</sub>: <input type="text" id="T1" readonly> s</label></br>
@@ -61,7 +61,7 @@
                     <label>T<sub>3</sub>: <input type="text" id="T3" readonly> s</label></br>
                 </div>
             </fieldset>
-            <fieldset>
+            <fieldset data-input-count="4">
                 <legend>Taban Kesme Kuvveti</legend>
                 <div>    
                     <label>Vb<sub>1</sub>: <input type="text" id="Vb1" readonly> kN</label></br>
@@ -72,7 +72,7 @@
                     </p>
                 </div>
             </fieldset>
-            <fieldset>
+            <fieldset data-input-count="4">
                 <legend>Tepe Noktası Maksimum Yerdeğiştirme</legend>
                 <div>    
                     <label>dmax<sub>1</sub>: <input type="text" id="dmax1" readonly> m</label></br>
@@ -83,7 +83,7 @@
                     </p>
                 </div>
             </fieldset>
-            <fieldset>
+            <fieldset data-input-count="4">
                 <legend>Maksimum Göreli Kat Ötelemesi</legend>
                 <div>    
                     <label>dr<sub>11</sub>: <input type="text" id="dr11" readonly></label></br>
@@ -94,11 +94,11 @@
                     </p>
                 </div>
             </fieldset>
-
+        </form>
         <button id="hesaplaButton" type="button">Hesapla</button>
         <button type="button" id="temizleButton">Temizle</button>
         <button type="button" id="resetButton">Reset</button>
-        </form>
+        
     </main>
     <footer>Final</footer>
 </body>
