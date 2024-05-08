@@ -10,8 +10,21 @@ h1 {
     font-size: 20px;
 }
 
+h5 {
+  margin-top: 0px;
+}
+
+p {
+  margin-bottom: auto;
+}
+
 header {
     padding: 20px;
+}
+
+div {
+  margin-top: 0px;
+  margin-bottom: 10px;
 }
 
 /*
@@ -35,11 +48,14 @@ form {
 }
 
 fieldset {
-  margin: 10px;
+  margin: 0px 10px;
   padding: 10px;
   border: 1px solid #ccc;
   width: calc(50% - 20px); /* İki sütunlu, 20px boşluk bırakarak */
   box-sizing: border-box;
+  background: #e1eff2;
+  width: calc(var(--input-count) * 50px); /* 50px boyutunda bir input kutusu varsayımı */
+  min-width: 300px;
 }
 
 legend {
@@ -47,11 +63,18 @@ legend {
     font-size: 17px;
     text-shadow: 0px 0px 2px rgb(0,0,0,0.5);
     text-align: flex;
-    margin-bottom: 15px;
+    margin-bottom: 0px;
+    padding: 20px 0;
 }
 
 label {
     font-size: 15px;
+}
+
+.flabel {
+  font-size: 15px;
+  display: inline-block;
+  width: 110px;
 }
 
 input {
@@ -80,6 +103,16 @@ button {
     font-family: Arial, Helvetica, sans-serif;
 }
 
+.btn {
+  display: flex;
+  justify-content: center; /* Yatayda ortala */
+  margin-top: 20px;
+}
+
+.btn-custom {
+  margin: 0 5px; /* Butonlar arasında 5px boşluk bırak */
+}
+
 @media screen and (min-width: 360px) {
     .form-container {
       grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* En az 150px, maksimum genişlik 1fr */
@@ -93,10 +126,7 @@ button {
     }
   }
 
-fieldset {
-    width: calc(var(--input-count) * 50px); /* 50px boyutunda bir input kutusu varsayımı */
-  }
-  
+  /*
   [data-input-count="2"] {
     --input-count: 7;
   }
@@ -116,3 +146,6 @@ fieldset {
   [data-input-count="6"] {
     --input-count: 6;
   }
+
+  */
+  
