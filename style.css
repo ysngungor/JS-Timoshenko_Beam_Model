@@ -51,6 +51,7 @@ fieldset {
   margin: 0px 10px;
   padding: 10px;
   border: 1px solid #ccc;
+  border-radius: 15px;
   width: calc(50% - 20px); /* İki sütunlu, 20px boşluk bırakarak */
   box-sizing: border-box;
   background: #e1eff2;
@@ -87,7 +88,7 @@ input {
     margin-bottom: 20px;
     flex-basis: calc(50%-5px);
 }
-
+/*
 button {
     background: rgb(45, 126, 231);
     height: 40px;
@@ -102,11 +103,36 @@ button {
     cursor: pointer;
     font-family: Arial, Helvetica, sans-serif;
 }
+*/
+button {
+  display: inline-block;
+  outline: none;
+  cursor: pointer;
+  font-size: 14px;
+  line-height: 1;
+  border-radius: 500px;
+  transition-property: background-color, border-color, color, box-shadow, filter;
+  transition-duration: .2s;
+  border: 1px solid transparent;
+  letter-spacing: 2px;
+  min-width: 160px;
+  text-transform: uppercase;
+  white-space: normal;
+  font-weight: 700;
+  text-align: center;
+  padding: 16px 14px 18px;
+  color: #fff;
+  background-color: #15883e;
+  height: 48px;
+}
 
 .btn {
   display: flex;
   justify-content: center; /* Yatayda ortala */
   margin-top: 20px;
+  :hover {
+    background-color: #1db954;
+}
 }
 
 .btn-custom {
